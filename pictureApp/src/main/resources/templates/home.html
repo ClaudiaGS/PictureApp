@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>home</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" th:href="@{/css/Header-Blue.css}">
+    <link rel="stylesheet" href="@{/css/styles.css}">
+</head>
+
+<body style="background-color: rgb(201,212,218);">
+<div style="height: 50px;">
+    <div class="header-blue" style="height: 50px;">
+        <h1 style="color: rgb(230,234,223);">Picture App</h1>
+    </div>
+</div>
+<h1 style="margin-top: 80px;font-size: 20px;width: 80%;margin-left: 10%;">Pictures stored in DB are:</h1>
+<div class="table-responsive" style="width: 80%;margin-left: 10%;background-color: #115382;">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Content</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${pictures.empty}">-->
+            <td>No pictures in DB</td>
+        </tr>
+        <tr th:each="picture: ${pictures}">
+            <td><span th:text="${picture.id}"> Id </span></td>
+            <td><span th:text="${picture.content}"> Content </span></td>
+            <td><span th:text="${picture.name}"> Name </span></td>
+        </tr>
+        </tbody>
+    </table>
+    <h4><a href="/patient/add"><span style="background-color:RGB(102,255,255)">Upload picture</span></a></h4>
+    <input type="file" id="picture" name="picture" accept="image/png, image/jpeg">
+</div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
