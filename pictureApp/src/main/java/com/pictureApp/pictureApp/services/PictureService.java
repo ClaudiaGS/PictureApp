@@ -5,9 +5,10 @@ import com.pictureApp.pictureApp.repositories.IPictureRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -18,20 +19,6 @@ public class PictureService implements IPictureService {
     
     private static final Logger logger = LogManager.getLogger("PictureService");
     
-    /**
-     * (non-javadoc)
-     *
-     * @see IPictureService#createPicture(Picture)
-     */
-    @Override
-    public Picture createPicture(Picture picture) {
-        logger.info("Creating picture in DB with id:", picture.getId()+" and named:"+picture.getName());
-        if(alreadyExists(picture)){
-            logger.error("Picture already exists");
-            return null;
-        }
-        return pictureRepository.save(picture);
-    }
     
     /**
      * (non-javadoc)
@@ -45,14 +32,17 @@ public class PictureService implements IPictureService {
         return pictures;
     }
     
-    /**
-     * (non-javadoc)
-     *
-     * @see IPictureService#alreadyExists(Picture)
-     */
     @Override
-    public boolean alreadyExists(Picture picture) {
-        Example<Picture>pictureExample=Example.of(picture);
-        return pictureRepository.exists(pictureExample);
+    public Long addPicture(String name, MultipartFile file) throws IOException {
+        Picture picture = new Picture();
+        picture.setName(name);
+        picture.setContent(file.getBytes());
+        picture = pictureRepository.save(picture);
+        return picture.getId();
+    }
+    
+    @Override
+    public Picture getPicture(Long id) {
+        return pictureRepository.findById((id)).get();
     }
 }

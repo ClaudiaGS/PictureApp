@@ -1,25 +1,24 @@
 package com.pictureApp.pictureApp.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "picture")
 public class Picture {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
-    @NotBlank(message = "You have to upload picture")
+    private Long id;
+    //@NotBlank(message = "You have to upload picture")
     @Lob
     byte[] content;
-    @NotBlank(message = "Picture name is mandatory")
+   // @NotBlank(message = "Picture name is mandatory")
     String name;
     
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
     
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
     

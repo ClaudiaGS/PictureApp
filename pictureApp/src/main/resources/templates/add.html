@@ -17,28 +17,15 @@
         <h1 style="color: rgb(230,234,223);">Picture App</h1>
     </div>
 </div>
-<h1 style="margin-top: 80px;font-size: 20px;width: 80%;margin-left: 10%;">Pictures stored in DB are:</h1>
+<h1 style="margin-top: 80px;font-size: 20px;width: 80%;margin-left: 10%;">Add picture:</h1>
 <div class="table-responsive" style="width: 80%;margin-left: 10%;background-color: #115382;">
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Content</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${pictures.empty}">-->
-            <td>No pictures in DB</td>
-        </tr>
-        <tr th:each="picture: ${pictures}">
-            <td><span th:text="${picture.id}"> Id </span></td>
-            <td><span th:text="${picture.name}"> Name </span></td>
-            <td><span th:text="${picture.content}"> Content </span></td>
-        </tr>
-        </tbody>
-    </table>
-    <h4><a href="/pictures/add"><span style="background-color:RGB(102,255,255)">Add picture</span></a></h4>
+
+    <form action="#" th:action="@{/picture/validate}" th:object="${picture}" method="post" class="form-horizontal"
+          style="width: 100%">
+
+        <input type="file" id="picture" name="picture" accept="image/png, image/jpeg">
+       <button class="btn btn-primary" type="submit"><span style="color:white">Upload picture</span></button>-->
+    </form>
 </div>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>

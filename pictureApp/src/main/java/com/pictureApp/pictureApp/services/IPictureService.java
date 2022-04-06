@@ -1,18 +1,12 @@
 package com.pictureApp.pictureApp.services;
 
 import com.pictureApp.pictureApp.domain.Picture;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface IPictureService {
-
-    
-    /**
-     * create new entry in DB
-     * @param picture
-     * @return Picture
-     */
-    public Picture createPicture(Picture picture);
     
     /**
      * get picture list
@@ -21,9 +15,17 @@ public interface IPictureService {
     public List<Picture> getPictures();
     
     /**
-     * check if picture already stored in DB
-     * @param picture
-     * @return boolean
+     * add picture to DB
+     * @param name
+     * @param file
+     * @return Long
      */
-    public boolean alreadyExists(Picture picture);
+    public Long addPicture(String name, MultipartFile file) throws IOException;
+    
+    /**
+     * get picture from DB
+     * @param id
+     * @return Picture
+     */
+    public Picture getPicture(Long id);
 }
