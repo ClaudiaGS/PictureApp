@@ -39,9 +39,8 @@ public class PictureController {
                            @RequestParam("content") MultipartFile content, Model model)
             throws IOException {
         Long id = pictureService.addPicture(name,content);
-      //  model.addAttribute("name",name);
-//        model.addAttribute("content",content);
-        return "redirect:/pictures/" + id;
+        return "redirect:/";
+//        return "redirect:/pictures/" + id;
     }
    
     
